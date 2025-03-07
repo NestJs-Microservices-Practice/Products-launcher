@@ -78,3 +78,14 @@ services:
       - SUCCESS_URL=${SUCCESS_URL}
       - CANCEL_URL=${CANCEL_URL}
       - SECRET_ENDPOINT=${SECRET_ENDPOINT}
+
+  auth-ms:
+    build: ./auth-ms
+    ports:
+      - ${AUTH_MICROSERVICE_PORT}:${AUTH_MICROSERVICE_PORT}
+    volumes:
+      - ./auth-ms/src:/usr/src/app/src
+    command: pnpm run start:dev
+    environment:
+      - PORT=${AUTH_MICROSERVICE_PORT}
+      - NATS_SERVERS=${NATS_SERVERS}
