@@ -23,24 +23,24 @@ services:
       - NATS_SERVERS=${NATS_SERVERS}
     
   products-ms:
-    build: ./products-ms
+    image: products-ms-prod
+    build: 
+      context: ./products-ms
+      dockerfile: Dockerfile.prod
     ports:
       - ${PRODUCTS_MICROSERVICE_PORT}:${PRODUCTS_MICROSERVICE_PORT}
-    volumes:
-      - ./products-ms/src:/usr/src/app/src
-    command: pnpm run start:dev
     environment:
       - PORT=${PRODUCTS_MICROSERVICE_PORT}
       - NATS_SERVERS=${NATS_SERVERS}
       - DATABASE_URL=${DATABASE_URL}
 
   orders-ms:
-    build: ./orders-ms
+    image: orders-ms-prod
+    build:
+      context: ./orders-ms
+      dockerfile: Dockerfile.prod
     ports:
       - ${ORDERS_MICROSERVICE_PORT}:${ORDERS_MICROSERVICE_PORT}
-    volumes:
-      - ./orders-ms/src:/usr/src/app/src
-    command: pnpm run start:dev
     environment:
       - PORT=${ORDERS_MICROSERVICE_PORT}
       - NATS_SERVERS=${NATS_SERVERS}
@@ -64,12 +64,12 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
 
   payments-ms:
-    build: ./payments-ms
+    image: payments-ms-prod
+    build:
+      context: ./payments-ms
+      dockerfile: Dockerfile.prod
     ports:
       - ${PAYMENTS_MICROSERVICE_PORT}:${PAYMENTS_MICROSERVICE_PORT}
-    volumes:
-      - ./payments-ms/src:/usr/src/app/src
-    command: pnpm run start:dev
     environment:
       - PORT=${PAYMENTS_MICROSERVICE_PORT}
       - ORDERS_MICROSERVICE_HOST=localhost
