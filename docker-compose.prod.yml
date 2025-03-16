@@ -91,3 +91,6 @@ services:
       - NATS_SERVERS=${NATS_SERVERS}
       - DATABASE_URL=${DATABASE_URL_MONGO}
       - SECRET=${SECRET_JWT}
+  
+  # Add more microservices here
+  # TODO: optimze the Dockerfile.prod for each microservice
