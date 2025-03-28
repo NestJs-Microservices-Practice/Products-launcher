@@ -1,5 +1,6 @@
 services:
 
+  # TODO: change this, because i dont use it in the prod
   nats-server:
     image: nats:latest
     ports:
